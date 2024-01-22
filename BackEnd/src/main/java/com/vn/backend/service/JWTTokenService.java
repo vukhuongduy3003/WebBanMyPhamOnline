@@ -1,20 +1,23 @@
 package com.vn.backend.service;
 
+import java.io.IOException;
+import java.util.Collections;
+import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.vn.backend.dto.LoginInfoUser;
 import com.vn.backend.entity.User;
 import com.vn.backend.entity.UserStatus;
+
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.Collections;
-import java.util.Date;
 
 public class JWTTokenService {
 	
@@ -37,7 +40,8 @@ public class JWTTokenService {
         		user.getEmail(), 
         		user.getFullName(),
         		user.getDiaChi(),
-        		user.getRole(), 
+        		user.getSDT(),
+        		user.getRole(),
         		user.getStatus().toString());
         
         // convert object to json

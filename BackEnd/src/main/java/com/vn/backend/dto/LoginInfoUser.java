@@ -1,5 +1,10 @@
 package com.vn.backend.dto;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
 public class LoginInfoUser {
 
 	private String token;
@@ -8,51 +13,25 @@ public class LoginInfoUser {
 
 	private String email;
 
-	private String firstName;
+	private String fullName;
 
-	private String lastName;
+	private String diaChi;
+
+	private String sDT;
 
 	private String role;
 
 	private String status;
 
-	public LoginInfoUser(String token, String userName, String email, String firstName, String lastName, String role,
+	public LoginInfoUser(String token, String userName, String email, String fullName, String diaChi, String sDT, String role,
 			String status) {
 		this.token = token;
 		this.userName = userName;
 		this.email = email;
-		this.firstName = firstName;
-		this.lastName = lastName;
+		this.fullName = fullName;
+		this.sDT = sDT;
+		this.diaChi = diaChi;
 		this.role = role;
 		this.status = status;
 	}
-
-	public String getToken() {
-		return token;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public String getRole() {
-		return role;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
 }

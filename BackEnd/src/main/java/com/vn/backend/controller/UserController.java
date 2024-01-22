@@ -1,18 +1,27 @@
 package com.vn.backend.controller;
 
-import com.vn.backend.dto.ChangePublicProfileDTO;
-import com.vn.backend.dto.ProfileDTO;
-import com.vn.backend.dto.UserDTO;
-import com.vn.backend.entity.User;
-import com.vn.backend.service.IUserService;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
+import com.vn.backend.dto.ChangePublicProfileDTO;
+import com.vn.backend.dto.ProfileDTO;
+import com.vn.backend.dto.UserDTO;
+import com.vn.backend.entity.User;
+import com.vn.backend.service.IUserService;
 
 @CrossOrigin("*")
 @RestController
@@ -114,6 +123,7 @@ public class UserController {
         		user.getEmail(), 
         		user.getFullName(),
         		user.getDiaChi(),
+				user.getSDT(),
         		user.getRole(),
         		user.getStatus().toString(),
         		user.getAvatarUrl());

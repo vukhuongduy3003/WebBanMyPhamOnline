@@ -1,9 +1,10 @@
 package com.vn.backend.event;
 
-import com.vn.backend.service.IEmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
+
+import com.vn.backend.service.IEmailService;
 
 @Component
 public class SendRegistrationUserConfirmViaEmailListener

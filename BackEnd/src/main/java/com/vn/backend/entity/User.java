@@ -1,11 +1,22 @@
 package com.vn.backend.entity;
 
-import org.hibernate.annotations.Formula;
-
-import javax.persistence.*;
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
+@Data
+@NoArgsConstructor
 @Table(name = "`User`")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -30,6 +41,9 @@ public class User implements Serializable {
 	@Column(name = "`diaChi`", nullable = false, length = 50)
 	private String diaChi;
 
+	@Column(name = "`sDT`", nullable = false, length = 15)
+	private String sDT;
+
 	@Column(name = "role", nullable = false)
 	private String role = "Customer";
 
@@ -40,62 +54,12 @@ public class User implements Serializable {
 	@Column(name = "avatarUrl")
 	private String avatarUrl;
 
-	public User(String userName, String email, String password, String fullName, String diaChi) {
+	public User(String userName, String email, String password, String fullName, String diaChi, String sDT) {
 		this.userName = userName;
 		this.email = email;
 		this.password = password;
 		this.fullName = fullName;
 		this.diaChi = diaChi;
-	}
-
-	public User() {
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public UserStatus getStatus() {
-		return status;
-	}
-
-	public void setStatus(UserStatus status) {
-		this.status = status;
-	}
-
-	public String getFullName() {
-		return fullName;
-	}
-
-	public String getDiaChi() {
-		return diaChi;
-	}
-
-	public String getRole() {
-		return role;
-	}
-
-	public String getAvatarUrl() {
-		return avatarUrl;
-	}
-
-	public void setAvatarUrl(String avatarUrl) {
-		this.avatarUrl = avatarUrl;
+		this.sDT = sDT;
 	}
 }

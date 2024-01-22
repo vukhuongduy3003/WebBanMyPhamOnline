@@ -1,10 +1,11 @@
 package com.vn.backend.service;
 
-import com.vn.backend.dto.ChangePublicProfileDTO;
-import com.vn.backend.entity.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+import com.vn.backend.dto.ChangePublicProfileDTO;
+import com.vn.backend.entity.User;
 
 public interface IUserService extends UserDetailsService {
 

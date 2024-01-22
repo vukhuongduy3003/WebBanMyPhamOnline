@@ -1,5 +1,16 @@
 package com.vn.backend.service;
 
+import java.util.UUID;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.vn.backend.dto.ChangePublicProfileDTO;
 import com.vn.backend.entity.RegistrationUserToken;
 import com.vn.backend.entity.ResetPasswordToken;
@@ -10,16 +21,6 @@ import com.vn.backend.event.OnSendRegistrationUserConfirmViaEmailEvent;
 import com.vn.backend.repository.RegistrationUserTokenRepository;
 import com.vn.backend.repository.ResetPasswordTokenRepository;
 import com.vn.backend.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.UUID;
 
 @Component
 @Transactional

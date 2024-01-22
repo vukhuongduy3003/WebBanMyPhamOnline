@@ -1,12 +1,13 @@
 package com.vn.backend.service;
 
-import com.vn.backend.entity.User;
-import com.vn.backend.repository.RegistrationUserTokenRepository;
-import com.vn.backend.repository.ResetPasswordTokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
+
+import com.vn.backend.entity.User;
+import com.vn.backend.repository.RegistrationUserTokenRepository;
+import com.vn.backend.repository.ResetPasswordTokenRepository;
 
 @Component
 public class EmailService implements IEmailService {
