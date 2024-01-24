@@ -18,9 +18,9 @@ public class BaiVietSpecificationBuilder {
     @SuppressWarnings("deprecation")
     public Specification<BaiViet> build() {
 
-        SearchCriteria seachCriteria = new SearchCriteria("name", "Like", search);
-        SearchCriteria minTotalMemberCriteria = new SearchCriteria("totalMember", ">=", filter.getMinNgayViet());
-        SearchCriteria maxTotalMemberCriteria = new SearchCriteria("totalMember", "<=", filter.getMaxNgayViet());
+        SearchCriteria seachCriteria = new SearchCriteria("tieuDe", "Like", search);
+        SearchCriteria minTotalMemberCriteria = new SearchCriteria("ngayViet", ">=", filter.getMinNgayViet());
+        SearchCriteria maxTotalMemberCriteria = new SearchCriteria("ngayViet", "<=", filter.getMaxNgayViet());
 
         Specification<BaiViet> where = null;
 
