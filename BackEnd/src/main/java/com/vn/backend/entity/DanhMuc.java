@@ -5,14 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Collection;
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "`Tbl_DanhMuc`")
 public class DanhMuc implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -27,4 +26,12 @@ public class DanhMuc implements Serializable {
 
     @Column(name = "`thuTu`", nullable = false)
     private int thuTu;
+
+    @OneToMany(mappedBy = "danhMuc",  cascade = CascadeType.ALL)
+    private Collection<SanPham> sanPhams;
+
+    public DanhMuc(String tenDanhMuc, int thuTu) {
+        this.tenDanhMuc = tenDanhMuc;
+        this.thuTu = thuTu;
+    }
 }

@@ -36,6 +36,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http
 		.authorizeRequests()
 		.antMatchers("/api/v1/login").anonymous()
+		.antMatchers("/api/v1/sanpham").anonymous()
 		.antMatchers("/api/v1/users/profile").authenticated()
 		.antMatchers("/api/v1/users/**").permitAll()
 		.anyRequest().authenticated()
