@@ -105,18 +105,17 @@ const SignIn = (props) => {
                 storage.setUserInfo(
                   result.userName,
                   result.email,
-                  result.firstName,
-                  result.lastName,
+                  result.fullName,
                   result.role,
                   result.status);
 
                 // save token & UserInfo to redux
+                console.log("result_Login: ", result)
                 props.setTokenInfo(result.token);
                 props.setUserLoginInfo(
                   result.userName,
                   result.email,
-                  result.firstName,
-                  result.lastName,
+                  result.fullName,
                   result.role,
                   result.status)
 

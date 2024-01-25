@@ -36,11 +36,10 @@ const getToken = () => {
     return getItem('token');
 };
 
-const setUserInfo = (userName, email, firstName, lastName, role, status) => {
+const setUserInfo = (userName, email, fullName, role, status) => {
     setItem('userName', userName);
     setItem('email', email);
-    setItem('firstName', firstName);
-    setItem('lastName', lastName);
+    setItem('fullName', fullName);
     setItem('role', role);
     setItem('status', status);
 }
@@ -49,8 +48,7 @@ const getUserInfo = () => {
     return {
         'userName': getItem('userName'),
         'email': getItem('email'),
-        'firstName': getItem('firstName'),
-        'lastName': getItem('lastName'),
+        'fullName': getItem('fullName'),
         'role': getItem('role'),
         'status': getItem('status')
     };
