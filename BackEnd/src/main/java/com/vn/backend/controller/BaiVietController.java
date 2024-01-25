@@ -24,7 +24,7 @@ public class BaiVietController {
     private IBaiVietService service;
 
     @GetMapping()
-    public ResponseEntity<?> getAllGroups(
+    public ResponseEntity<?> getAllBaiViets(
             Pageable pageable,
             BaiVietFilter filter,
             @RequestParam(required = false)
