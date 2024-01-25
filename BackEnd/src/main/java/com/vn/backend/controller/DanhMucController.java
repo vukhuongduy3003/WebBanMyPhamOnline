@@ -22,7 +22,7 @@ public class DanhMucController {
     private IDanhMucService service;
 
     @GetMapping()
-    public ResponseEntity<?> getAllGroups(
+    public ResponseEntity<?> getAllDanhMucs(
             Pageable pageable,
             DanhMucFilter filter,
             @RequestParam(required = false)
