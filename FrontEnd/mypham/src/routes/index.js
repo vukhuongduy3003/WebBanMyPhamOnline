@@ -74,6 +74,8 @@ import NewPassword from "../pages/auth/NewPassword";
 import withAuth from "../HOC/withAuth";
 import DanhMucPage from "../pages/danh_muc";
 import BaiVietPage from "../pages/bai_viet";
+import SanPhamPage from "../pages/product";
+import PhanHoiDashboard from "../pages/dashboards/phan-hoi";
 // Dashboards
 const Default = async(() => import("../pages/dashboards/Default"));
 const Analytics = async(() => import("../pages/dashboards/Analytics"));
@@ -185,6 +187,22 @@ const DanhMucRoute = {
   name: "Quản lý Danh Mục",
   icon: ListIcon,
   component: withAuth(DanhMucPage),
+  children: null
+};
+
+const SanPhamRoute = {
+  path: "/sanpham",
+  name: "Quản lý Sản Phẩm",
+  icon: ListIcon,
+  component: withAuth(SanPhamPage),
+  children: null
+};
+
+const PhanHoiDashboardRoute = {
+  path: "/phan-hoi",
+  name: "Phản hồi",
+  icon: ListIcon,
+  component: withAuth(PhanHoiDashboard),
   children: null
 };
 
@@ -628,6 +646,8 @@ export const dashboard = [
   groupRoutes,
   BaiVietRoutes,
   DanhMucRoute,
+  SanPhamRoute,
+  PhanHoiDashboardRoute,
   pageRoutes,
   layoutRoutes,
   documentationRoutes,
@@ -657,7 +677,9 @@ export default [
   dashboardRoutes,
   groupRoutes,
   BaiVietRoutes,
-  DanhMucRoute
+  DanhMucRoute,
+  PhanHoiDashboardRoute,
+  SanPhamRoute,
   // pageRoutes,
   // authRoutes,
   // layoutRoutes,

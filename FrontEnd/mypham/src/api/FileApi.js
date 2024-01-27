@@ -8,7 +8,9 @@ const uploadImage = (imageFile) => {
     const body = new FormData();
     body.append('image', imageFile);
 
-    return Api.post(`${url}/image`, body);
+    return Api.post(`${url}/image`, body, {
+        headers: {'Content-Type': 'multipart/form-data"'}
+    });
 };
 
 // export
