@@ -1,6 +1,7 @@
 package com.vn.backend.controller;
 
 import com.vn.backend.dto.SanPhamCreateRequest;
+import com.vn.backend.dto.SanPhamDTO;
 import com.vn.backend.dto.filter.SanPhamFilter;
 import com.vn.backend.entity.DanhMuc;
 import com.vn.backend.entity.SanPham;
@@ -33,13 +34,13 @@ public class SanPhamController {
             SanPhamFilter filter,
             @RequestParam(required = false)
             String search) {
-        Page<SanPham> entities = service.getAllSanPhams(pageable, filter, search);
+        Page<SanPhamDTO> entities = service.getAllSanPhams(pageable, filter, search);
         return new ResponseEntity<>(entities, HttpStatus.OK);
     }
 
     @GetMapping("/danhMucs/{idDanhMuc}")
-    public ResponseEntity<?> findSanPhamsByDanhMucId(@PathVariable Integer idDanhMuc) {
-        List<SanPham> entities = service.findSanPhamsByDanhMucId(idDanhMuc);
+    public ResponseEntity<?> findSanPhamsByDanhMucId(@PathVariable Integer idDanhMuc, Pageable pageable) {
+        Page<SanPham> entities = service.findSanPhamsByDanhMucId(idDanhMuc, pageable);
         return new ResponseEntity<>(entities, HttpStatus.OK);
     }
 
