@@ -68,9 +68,21 @@ public class SanPhamController {
         return new ResponseEntity<>(service.getSanPhamByID(id), HttpStatus.OK);
     }
 
-    @PutMapping(value = "/{id}/danhMucs/{idDanhMuc}")
-    public ResponseEntity<?> updateSanPham(@PathVariable(name = "id") Integer id, @PathVariable(name = "idDanhMuc") Integer idDanhMuc, @RequestBody SanPham form) {
-        DanhMuc danhMuc = danhMucService.getDanhMucByID(idDanhMuc);
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<?> updateSanPham(@PathVariable(name = "id") Integer id, @RequestBody SanPhamCreateRequest form) {
+        DanhMuc danhMuc = danhMucService.getDanhMucByID(form.getIdDanhMuc());
+        SanPham sanPham = new SanPham();
+        sanPham.setTenSanPham(form.getTenSanPham());
+        sanPham.setSoLuong(form.getSoLuong());
+        sanPham.setGiaSanPham(form.getGiaSanPham());
+        sanPham.setGiaSale(form.getGiaSale());
+        sanPham.setHinhAnh(form.getHinhAnh());
+        sanPham.setNgaySanXuat(form.getNgaySanXuat());
+        sanPham.setNgayHetHan(form.getNgayHetHan());
+        sanPham.setMoTa(form.getMoTa());
+        sanPham.setTinhTrang(form.getTinhTrang());
+        sanPham.setDanhMuc(danhMuc);
+        form.setDanhMuc(danhMuc);
         form.setDanhMuc(danhMuc);
         service.updateSanPham(id, form);
         return new ResponseEntity<String>("Update successfully!", HttpStatus.OK);

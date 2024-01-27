@@ -2,6 +2,7 @@ package com.vn.backend.config.authentication;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -37,6 +38,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.authorizeRequests()
 		.antMatchers("/api/v1/login").anonymous()
 		.antMatchers("/api/v1/sanpham").anonymous()
+		.antMatchers(HttpMethod.GET, "/api/v1/files/**").permitAll()
 		.antMatchers("/api/v1/users/profile").authenticated()
 		.antMatchers("/api/v1/users/**").permitAll()
 		.anyRequest().authenticated()
