@@ -23,9 +23,6 @@ public class SanPhamService implements ISanPhamService {
     @Autowired
     private SanPhamRepository repository;
 
-    @Autowired
-    private DanhMucRepository danhMucRepository;
-
     public Page<SanPham> getAllSanPhams(Pageable pageable, SanPhamFilter filter, String search) {
 
         SanPhamSpecificationBuilder specification = new SanPhamSpecificationBuilder(filter, search);
@@ -64,9 +61,4 @@ public class SanPhamService implements ISanPhamService {
     public void deleteSanPhams(List<Integer> ids) {
         repository.deleteByIdSanPhamIn(ids);
     }
-
-    public DanhMuc findByIdDanhMuc(Integer id) {
-        return danhMucRepository.findById(id).get();
-    }
-
 }

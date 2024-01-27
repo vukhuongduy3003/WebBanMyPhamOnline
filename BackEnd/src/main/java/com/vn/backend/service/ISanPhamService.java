@@ -1,7 +1,6 @@
 package com.vn.backend.service;
 
 import com.vn.backend.dto.filter.SanPhamFilter;
-import com.vn.backend.entity.DanhMuc;
 import com.vn.backend.entity.SanPham;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

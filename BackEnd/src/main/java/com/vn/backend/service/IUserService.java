@@ -11,6 +11,8 @@ public interface IUserService extends UserDetailsService {
 
 	void createUser(User user);
 
+	User findUserById(Integer id);
+
 	User findUserByEmail(String email);
 
 	User findUserByUserName(String username);

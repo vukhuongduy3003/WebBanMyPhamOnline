@@ -57,6 +57,10 @@ public class UserService implements IUserService {
 		sendConfirmUserRegistrationViaEmail(user.getEmail());
 	}
 
+	public User findUserById(Integer id) {
+		return userRepository.findById(id).get();
+	}
+
 	private void createNewRegistrationUserToken(User user) {
 
 		// create new token for confirm Registration
