@@ -17,7 +17,7 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/v1/sanpham")
+@RequestMapping("/api/v1/sanPhams")
 @Validated
 public class SanPhamController {
     @Autowired
@@ -26,28 +26,23 @@ public class SanPhamController {
     @Autowired
     private IDanhMucService danhMucService;
 
-    @GetMapping("/danhMucs/{idDanhMuc}/sanPhams")
-    public ResponseEntity<?> getAllSanPhamsByDanhMucId(
+    @GetMapping()
+    public ResponseEntity<?> getAllSanPhams(
             Pageable pageable,
             SanPhamFilter filter,
-            @PathVariable(value = "idDanhMuc") Integer idDanhMuc,
             @RequestParam(required = false)
             String search) {
-        Page<SanPham> entities = service.getAllSanPhamsByDanhMucId(idDanhMuc, pageable, filter, search);
+        Page<SanPham> entities = service.getAllSanPhams(pageable, filter, search);
         return new ResponseEntity<>(entities, HttpStatus.OK);
     }
 
-//    @GetMapping("/sanPhams/{}")
-//    public ResponseEntity<?> getSanPhamsByIdSanPham(
-//            Pageable pageable,
-//            SanPhamFilter filter,
-//            @RequestParam(required = false)
-//            String search) {
-//        Page<SanPham> entities = service.getAllSanPhams(pageable, filter, search);
-//        return new ResponseEntity<>(entities, HttpStatus.OK);
-//    }
+    @GetMapping("/danhMucs/{idDanhMuc}")
+    public ResponseEntity<?> findSanPhamsByDanhMucId(@PathVariable Integer idDanhMuc) {
+        List<SanPham> entities = service.findSanPhamsByDanhMucId(idDanhMuc);
+        return new ResponseEntity<>(entities, HttpStatus.OK);
+    }
 
-    @PostMapping("/danhMucs/{idDanhMuc}/sanPhams")
+    @PostMapping("/danhMucs/{idDanhMuc}")
     public ResponseEntity<?> createSanPham(@PathVariable(value = "idDanhMuc") Integer idDanhMuc, @RequestBody SanPham form) {
         DanhMuc danhMuc = danhMucService.getDanhMucByID(idDanhMuc);
         form.setDanhMuc(danhMuc);
@@ -55,13 +50,15 @@ public class SanPhamController {
         return new ResponseEntity<String>("Create successfully!", HttpStatus.OK);
     }
 
-    @GetMapping(value = "/sanPhams/{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<?> getSanPhamByID(@PathVariable(name = "id") Integer id) {
         return new ResponseEntity<>(service.getSanPhamByID(id), HttpStatus.OK);
     }
 
-    @PutMapping(value = "/{id}")
-    public ResponseEntity<?> updateSanPham(@PathVariable(name = "id") Integer id, @RequestBody SanPham form) {
+    @PutMapping(value = "/{id}/danhMucs/{idDanhMuc}")
+    public ResponseEntity<?> updateSanPham(@PathVariable(name = "id") Integer id, @PathVariable(name = "idDanhMuc") Integer idDanhMuc, @RequestBody SanPham form) {
+        DanhMuc danhMuc = danhMucService.getDanhMucByID(idDanhMuc);
+        form.setDanhMuc(danhMuc);
         service.updateSanPham(id, form);
         return new ResponseEntity<String>("Update successfully!", HttpStatus.OK);
     }

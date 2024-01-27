@@ -16,14 +16,14 @@ public class SanPhamSpecificationBuilder {
     }
 
     @SuppressWarnings("deprecation")
-    public Specification<SanPham> build(Integer idDanhMuc) {
+    public Specification<SanPham> build() {
 
-        SearchCriteria seachCriteria = new SearchCriteria("idDanhMuc", "=", idDanhMuc);
+        SearchCriteria seachCriteria = new SearchCriteria("tenSP", "LIKE", search);
 
         Specification<SanPham> where = null;
 
         // search
-        if (!StringUtils.isEmpty(idDanhMuc)) {
+        if (!StringUtils.isEmpty(search)) {
             where = new SanPhamSpecification(seachCriteria);
         }
 

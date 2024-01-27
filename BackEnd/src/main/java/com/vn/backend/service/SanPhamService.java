@@ -1,10 +1,13 @@
 package com.vn.backend.service;
 
+import com.vn.backend.dto.filter.DanhMucFilter;
 import com.vn.backend.dto.filter.SanPhamFilter;
 import com.vn.backend.entity.DanhMuc;
 import com.vn.backend.entity.SanPham;
 import com.vn.backend.repository.DanhMucRepository;
 import com.vn.backend.repository.SanPhamRepository;
+import com.vn.backend.specification.BaiVietSpecificationBuilder;
+import com.vn.backend.specification.DanhMucSpecificationBuilder;
 import com.vn.backend.specification.SanPhamSpecificationBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,8 +26,15 @@ public class SanPhamService implements ISanPhamService {
     @Autowired
     private DanhMucRepository danhMucRepository;
 
-    public Page<SanPham> getAllSanPhamsByDanhMucId(Integer idDanhMuc, Pageable pageable, SanPhamFilter filter, String search) {
-        return (Page<SanPham>) repository.findSanPhamsByDanhMucId(idDanhMuc);
+    public Page<SanPham> getAllSanPhams(Pageable pageable, SanPhamFilter filter, String search) {
+
+        SanPhamSpecificationBuilder specification = new SanPhamSpecificationBuilder(filter, search);
+
+        return repository.findAll(specification.build(), pageable);
+    }
+
+    public List<SanPham> findSanPhamsByDanhMucId(Integer idDanhMuc) {
+        return repository.findSanPhamsByDanhMucId(idDanhMuc);
     }
 
     public void createSanPham(SanPham form) {

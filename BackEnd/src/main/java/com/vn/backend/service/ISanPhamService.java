@@ -9,7 +9,9 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface ISanPhamService {
-    Page<SanPham> getAllSanPhamsByDanhMucId(Integer idDanhMuc, Pageable pageable, SanPhamFilter filter, String search);
+    Page<SanPham> getAllSanPhams(Pageable pageable, SanPhamFilter filter, String search);
+
+    List<SanPham> findSanPhamsByDanhMucId(Integer idDanhMuc);
 
     void createSanPham(SanPham form);
 
