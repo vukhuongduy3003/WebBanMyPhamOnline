@@ -1,5 +1,7 @@
 package com.vn.backend.controller;
 
+import com.vn.backend.dto.SanPhamCreateRequest;
+import com.vn.backend.dto.SanPhamDTO;
 import com.vn.backend.dto.filter.SanPhamFilter;
 import com.vn.backend.entity.DanhMuc;
 import com.vn.backend.entity.SanPham;
@@ -32,21 +34,32 @@ public class SanPhamController {
             SanPhamFilter filter,
             @RequestParam(required = false)
             String search) {
-        Page<SanPham> entities = service.getAllSanPhams(pageable, filter, search);
+        Page<SanPhamDTO> entities = service.getAllSanPhams(pageable, filter, search);
         return new ResponseEntity<>(entities, HttpStatus.OK);
     }
 
     @GetMapping("/danhMucs/{idDanhMuc}")
-    public ResponseEntity<?> findSanPhamsByDanhMucId(@PathVariable Integer idDanhMuc) {
-        List<SanPham> entities = service.findSanPhamsByDanhMucId(idDanhMuc);
+    public ResponseEntity<?> findSanPhamsByDanhMucId(@PathVariable Integer idDanhMuc, Pageable pageable) {
+        Page<SanPham> entities = service.findSanPhamsByDanhMucId(idDanhMuc, pageable);
         return new ResponseEntity<>(entities, HttpStatus.OK);
     }
 
-    @PostMapping("/danhMucs/{idDanhMuc}")
-    public ResponseEntity<?> createSanPham(@PathVariable(value = "idDanhMuc") Integer idDanhMuc, @RequestBody SanPham form) {
-        DanhMuc danhMuc = danhMucService.getDanhMucByID(idDanhMuc);
+    @PostMapping()
+    public ResponseEntity<?> createSanPham( @RequestBody SanPhamCreateRequest form) {
+        DanhMuc danhMuc = danhMucService.getDanhMucByID(form.getIdDanhMuc());
+        SanPham sanPham = new SanPham();
+        sanPham.setTenSanPham(form.getTenSanPham());
+        sanPham.setSoLuong(form.getSoLuong());
+        sanPham.setGiaSanPham(form.getGiaSanPham());
+        sanPham.setGiaSale(form.getGiaSale());
+        sanPham.setHinhAnh(form.getHinhAnh());
+        sanPham.setNgaySanXuat(form.getNgaySanXuat());
+        sanPham.setNgayHetHan(form.getNgayHetHan());
+        sanPham.setMoTa(form.getMoTa());
+        sanPham.setTinhTrang(form.getTinhTrang());
+        sanPham.setDanhMuc(danhMuc);
         form.setDanhMuc(danhMuc);
-        service.createSanPham(form);
+        service.createSanPham(sanPham);
         return new ResponseEntity<String>("Create successfully!", HttpStatus.OK);
     }
 

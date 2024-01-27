@@ -1,5 +1,6 @@
 package com.vn.backend.service;
 
+import com.vn.backend.dto.SanPhamDTO;
 import com.vn.backend.dto.filter.DanhMucFilter;
 import com.vn.backend.dto.filter.SanPhamFilter;
 import com.vn.backend.entity.DanhMuc;
@@ -11,11 +12,14 @@ import com.vn.backend.specification.DanhMucSpecificationBuilder;
 import com.vn.backend.specification.SanPhamSpecificationBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class SanPhamService implements ISanPhamService {
@@ -23,15 +27,37 @@ public class SanPhamService implements ISanPhamService {
     @Autowired
     private SanPhamRepository repository;
 
-    public Page<SanPham> getAllSanPhams(Pageable pageable, SanPhamFilter filter, String search) {
-
-        SanPhamSpecificationBuilder specification = new SanPhamSpecificationBuilder(filter, search);
-
-        return repository.findAll(specification.build(), pageable);
+    private SanPhamDTO convertToDTO(SanPham sanPham) {
+        SanPhamDTO dto = new SanPhamDTO();
+        dto.setIdSanPham(sanPham.getIdSanPham());
+        dto.setTenSanPham(sanPham.getTenSanPham());
+        dto.setSoLuong(sanPham.getSoLuong());
+        dto.setGiaSanPham(sanPham.getGiaSanPham());
+        dto.setGiaSale(sanPham.getGiaSale());
+        dto.setHinhAnh(sanPham.getHinhAnh());
+        dto.setNgaySanXuat(sanPham.getNgaySanXuat());
+        dto.setNgayHetHan(sanPham.getNgayHetHan());
+        dto.setMoTa(sanPham.getMoTa());
+        dto.setTinhTrang(sanPham.getTinhTrang());
+        dto.setIdDanhMuc(sanPham.getDanhMuc().getIdDanhMuc());
+        return dto;
     }
 
-    public List<SanPham> findSanPhamsByDanhMucId(Integer idDanhMuc) {
-        return repository.findSanPhamsByDanhMucId(idDanhMuc);
+    public Page<SanPhamDTO> getAllSanPhams(Pageable pageable, SanPhamFilter filter, String search) {
+        SanPhamSpecificationBuilder specification = new SanPhamSpecificationBuilder(filter, search);
+
+        Page<SanPham> sanPhamPage = repository.findAll(specification.build(), pageable);
+
+        List<SanPhamDTO> sanPhamDTOList = sanPhamPage.getContent().stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+
+        return new PageImpl<>(sanPhamDTOList, pageable, sanPhamPage.getTotalElements());
+    }
+
+
+    public Page<SanPham> findSanPhamsByDanhMucId(Integer idDanhMuc, Pageable pageable) {
+        return repository.findSanPhamsByDanhMucId(idDanhMuc, pageable);
     }
 
     public void createSanPham(SanPham form) {
