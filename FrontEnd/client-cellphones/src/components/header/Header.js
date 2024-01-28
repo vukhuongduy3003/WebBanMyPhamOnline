@@ -15,9 +15,6 @@ import {
 function Header(props) {
   const dispatch = useDispatch();
   const history = useHistory();
-
-  
-
   const [showAccount, setShowAccount] = useState(false);
   const [showAccount2, setShowAccount2] = useState(false);
 
@@ -45,7 +42,7 @@ function Header(props) {
       <section id="menu">
         <div className="logo">
           <span>
-            <Link to="/"> CELLPHONES </Link>
+            <Link to="/"> Mĩ Phẩm Đông Á </Link>
           </span>
         </div>
         <div className="search">
@@ -76,7 +73,6 @@ function Header(props) {
               </Link>
               {showAccount2 ? (
                 <div className="menu-drop">
-                  {userInfo.isAdmin ? <Link to="/admin">Admin</Link> : ""}
                   <Link to="/myOrder">Đơn hàng</Link>
                   <Link onClick={() => handleSignout()}>Đăng xuất</Link>
                 </div>

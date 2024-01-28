@@ -9,7 +9,7 @@
 
     export const handlePercentDiscount = (products) => { 
         const newList = products.map(product => {
-            const percentDiscount = 100 - Math.round(product.salePrice * 100 / product.price) ;
+            const percentDiscount = 100 - Math.round(product.giaSale / product.giaSanPham) * 100 ;
             // const price = formatPrice(product.price)
             // const salePrice = formatPrice(product.salePrice)
 

@@ -6,6 +6,7 @@ const initialState = {
 export const getAllProductReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'GET_ALL_PRODUCT':
+            console.log(action.payload)
             return {...state, product: action.payload}
 
         case 'GET_ALL_PRODUCT_FAIL':

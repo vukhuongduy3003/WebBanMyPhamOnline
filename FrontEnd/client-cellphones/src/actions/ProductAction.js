@@ -2,7 +2,7 @@ import axios from "axios";
 import actions from './product.action'
 import {BASE_URL} from '../constants/UserConstant'
 import { axiosClient } from "../services/config.services";
-
+import ProductApi from "../api/SanPhamApi"
 export const filterProductByType = (name) => async (dispatch) => {
   try {
     const { data } = await axios.get(`${BASE_URL}/products/${name}`);
@@ -24,8 +24,8 @@ export const filterProductByRandomField = (infoProduct) => async (dispatch) => {
 
 export const getAllProduct = () => async (dispatch) => {
   try {
-    const { data } = await axios.get(`http://localhost:4000/products/`);
-    dispatch({ type: "GET_ALL_PRODUCT", payload: data });
+    const data = await ProductApi.getAllSanPham()
+    dispatch({ type: "GET_ALL_PRODUCT", payload: data?.content });
   } catch (error) {
     dispatch({ type: "GET_ALL_PRODUCT_FAIL", payload: error.message });
   }
@@ -68,9 +68,8 @@ export const paginationProduct = (page) => async (dispatch) => {
 
 export const getproductById = (id) => async (dispatch) => {
   try {
-    const { data } = await axios.get(
-      `http://localhost:4000/products/detail/${id}`
-    );
+    const data = await ProductApi.getById(id)
+    console.log({data})
     dispatch({ type: "GET_PRODUCT_BY_ID", payload: data });
   } catch (error) {
     dispatch({ type: "GET_PRODUCT_BY_ID_FAIL", payload: error.message });

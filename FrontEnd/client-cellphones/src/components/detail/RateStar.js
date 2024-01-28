@@ -6,6 +6,7 @@ import { reviewProduct } from '../../actions/ProductAction';
 import { StarOutlined } from '@ant-design/icons';
 
 function RateStar(props) {
+    return null;
     const {id} = useParams()
     const dispatch = useDispatch()
 
@@ -17,7 +18,7 @@ function RateStar(props) {
     const {userInfo} = useSelector(state => state.userSignin)
     const product = useSelector(state => state.getProductById.product)
     
-    const countReview = product.reviews.length
+    const countReview = product?.reviews?.length || 0
     let averageRate = Math.round(product.reviews.reduce((a,c) => a + c.star, 0) / countReview)
 
     if(userInfo) {

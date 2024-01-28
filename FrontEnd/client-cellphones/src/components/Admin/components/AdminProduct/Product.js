@@ -15,7 +15,7 @@ function Product(props) {
   const currentPage = useSelector((state) => state.allProduct.currentPage);
 
   const handleDeleteProduct = async (product) => {
-    await dispatch(DeleteProduct(product._id));
+    await dispatch(DeleteProduct(product.idSanPham));
     dispatch(paginationProduct(currentPage));
   };
 
@@ -35,12 +35,12 @@ function Product(props) {
         <DeleteOutlined />
       </td>
       <td className="update-product">
-        <Link to={`/admin/product/update/${product._id}`}>
+        <Link to={`/admin/product/update/${product.idSanPham}`}>
           <EditOutlined></EditOutlined>
         </Link>
       </td>
       <td className="review-product">
-        <Link to={`/admin/product/reviewProduct/${product._id}`} >
+        <Link to={`/admin/product/reviewProduct/${product.idSanPham}`} >
           <FormOutlined></FormOutlined>
         </Link>
       </td>

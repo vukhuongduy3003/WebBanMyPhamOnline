@@ -2,11 +2,10 @@ import axios from 'axios'
 
 export const login = (user) => async (dispatch) => {
     try {
-      const {data} = await axios.post('http://localhost:4000/user/login', user)
-      dispatch({ type: 'USER_LOGIN_SUCCESS', payload: data });
-      localStorage.setItem('userInfo', JSON.stringify(data));
+      dispatch({ type: 'USER_LOGIN_SUCCESS', payload: user });
+      localStorage.setItem('userInfo', JSON.stringify(user));
     } catch (error) {
-      dispatch({ type: 'USER_LOGIN_FAIL', payload: error.response.data.message });
+      dispatch({ type: 'USER_LOGIN_FAIL', payload: error.response?.data?.message });
     }
 };
 

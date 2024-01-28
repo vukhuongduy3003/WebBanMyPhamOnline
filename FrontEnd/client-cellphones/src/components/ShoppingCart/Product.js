@@ -29,14 +29,14 @@ function Product(props) {
         <div className="shopping-cart-list-product">
             <div className="shopping-cart-list-product-block">
                 <div className="shopping-cart-list-product-block-left">
-                    <img src={product.image}></img>
+                <img src={`http://localhost:8080/api/v1/files/${product?.hinhAnh}`}></img>
                 </div>
                 <div className="shopping-cart-list-product-block-right">
                     <p className="product-name">
-                        {product.name}
+                        {product.tenSanPham}
                     </p>
                     <p className="product-price">
-                        {formatPrice(product.salePrice)}
+                        {formatPrice(Math.round(product.giaSanPham - product.giaSale))}
                     </p>
                 </div>
                 

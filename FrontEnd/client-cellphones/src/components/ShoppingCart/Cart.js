@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { formatPrice } from '../../untils';
 import './ShoppingCart.css'
 import ListProduct from './ListProduct'
@@ -12,10 +12,11 @@ function Cart(props) {
     const history = useHistory()
     const cartItems = useSelector((state) => state.cart.cartItems);
     var userInfo = useSelector((state) => state.userSignin.userInfo);
-    const totalPrice = cartItems.reduce(
-      (total, item) => total + item.qty * item.salePrice,
+    const totalPrice = useMemo(
+      () => cartItems.reduce(
+      (total, item) => total + item.qty * (item.giaSanPham - item.giaSale),
       0
-    );
+    ), [cartItems]);
 
     const Order = () => {
       if (userInfo) {

@@ -5,7 +5,7 @@ import Login from '../components/login/Login';
 function LoginPage(props) {
     return (
         <div>
-            <Login></Login>
+            <Login />
         </div>
     );
 }

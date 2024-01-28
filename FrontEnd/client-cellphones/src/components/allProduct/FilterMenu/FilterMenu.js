@@ -12,17 +12,8 @@ import { getAllTypeProduct } from "../../../actions/ListTypeProductAction";
 export default function FilterMenu() {
   const dispatch = useDispatch();
   const [dataFilter, setDataFilter] = useState({});
-  const filterMenuList = useSelector(state => state.selectList.List)
   const { List} = useSelector(state => state.allTypeProduct)
-
-  useEffect(() => {
-    dispatch(filterProductByRandomField(dataFilter));
-  }, [dataFilter]);
-
-  useEffect(() => {
-    dispatch(getAllSelectList())
-  }, [dispatch])
-
+  console.log(List)
   useEffect(() => {
     dispatch(getAllTypeProduct())
   }, [dispatch])
@@ -85,7 +76,8 @@ export default function FilterMenu() {
     setDataFilter(newDataFilter);
   };
 
-  const MenuFirmProduct = (item) => (
+  const MenuFirmProduct = (item) => {
+    return (
     <div
       className={
         dataFilter[`type`] === item.name
@@ -94,9 +86,9 @@ export default function FilterMenu() {
       }
       onClick={() => HandleFilterProductByType(item.name)}
     >
-      <img src={item.img}></img>
+      <span>{item?.tenDanhMuc}</span>
     </div>
-  );
+  )};
 
   const HandleFilterProductByType = async (name) => {
     if (dataFilter.type === name) {
@@ -113,12 +105,6 @@ export default function FilterMenu() {
       <div className="filter-menu-firm">
         {
           List ? (List.map((item) => MenuFirmProduct(item))) : ''
-        }
-      </div>
-
-      <div className="filter-menu">
-        {
-          filterMenuList && filterMenuList.length > 0 ? (filterMenuList.map((item) => filterMenuItemAntd(item))) : ''
         }
       </div>
     </div>

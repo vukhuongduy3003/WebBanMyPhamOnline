@@ -1,5 +1,6 @@
 import React from 'react';
 import {formatPrice} from '../../untils/index'
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 function Product(props) {
@@ -12,17 +13,19 @@ function Product(props) {
 
     return (
         <div className="hotsale-listproduct-product">
-            <a href={"/detail/" + product._id}>
-                <img src={product.image}></img>
+            <Link to={"/detail/" + product.idSanPham}>
+                <img src={`http://localhost:8080/api/v1/files/${product?.hinhAnh}`}></img>
                 <p className="hotsale-listproduct-product-name">{product.name}</p>
                 <div className="price">
-                    <span className="price1">{formatPrice(product.salePrice)}đ</span>
-                    <span className="price2">{formatPrice(product.price)}đ</span>
+                    <span className="price1">{formatPrice(product?.giaSanPham - product?.giaSale)}đ</span>
+                    <span className="price2">{formatPrice(product?.giaSanPham)}đ</span>
                 </div>
-            </a>
+            </Link>
+            {
             <div className="discount">
-                <p>{product.percentDiscount}%</p>
+                <p>{((product?.giaSale / product?.giaSanPham) * 100).toFixed(1)} %</p>
             </div>
+            }
             <div className="buy">
                 <a href="/cart" onClick={() => AddToCart(product)}> Mua Ngay</a>
             </div>

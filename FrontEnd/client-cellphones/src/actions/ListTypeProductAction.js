@@ -1,9 +1,9 @@
 import axios from 'axios'
-
+import DanhMucApi from '../api/DanhMucApi';
 export const getAllTypeProduct = () => async (dispatch) => {
     try {
-        const {data} = await axios.get('http://localhost:4000/typeList')
-        dispatch({type: 'GET_ALL_TYPE_PRODUCT', payload: data})
+        const data = await DanhMucApi.getAllDanhMuc()
+        dispatch({type: 'GET_ALL_TYPE_PRODUCT', payload: data.content})
     } catch (error) {
     }
 }

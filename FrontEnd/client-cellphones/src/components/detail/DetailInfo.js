@@ -17,12 +17,12 @@ function DetailInfo(props) {
         <div className="detail-info-right">
             <div className="detail-info-right-price">
                 <p className="price-box">
-                    <span className="saleprice">{formatPrice(product.salePrice)}đ</span>
-                    <span className="old-price">Giá niêm yết : <strong className="price">{formatPrice(product.price)}đ</strong> </span>
+                    <span className="saleprice">{formatPrice(Math.round((product.giaSanPham - product.giaSale)))}đ</span>
+                    <span className="old-price">Giá niêm yết : <strong className="price">{formatPrice(product.giaSanPham)}đ</strong> </span>
                 </p>
                 <p className="detail-info-sale">
                     Sản phẩm thuộc chương trình HOT SALE CUỐI TUẦN - Nhanh tay thanh toán!
-                            </p>
+                </p>
             </div>
 
             <div className="detail-info-right-buy">

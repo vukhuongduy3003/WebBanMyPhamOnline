@@ -35,6 +35,7 @@ p{
     display: flex;
     overflow: hidden;
     flex-wrap: wrap;
+    gap: 16px;
 }
 .hotsale-listproduct-product{
     position: relative;

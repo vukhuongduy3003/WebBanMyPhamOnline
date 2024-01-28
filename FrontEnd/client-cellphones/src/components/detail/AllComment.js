@@ -41,27 +41,17 @@ function AllComment(props) {
 
   return (
     <div class="all-comment">
-      {allComment.map((comment) => (
+      {allComment?.map((comment) => (
         <>
           <Col span={18} style={{ marginTop: "1rem" }} xs={24} sm={24} md={18}>
             <div className="all-comment-info">
               <div style={{ display: "flex" }}>
-                {comment.isAdmin ? (
-                  <div className="all-comment-info-name admin">
-                    <img src="https://cellphones.com.vn/skin/frontend/default/cpsdesktop/images/media/logo.png"></img>
-                  </div>
-                ) : (
+                
                   <div className="all-comment-info-name">
-                    {getFirstCharacterUser(comment.author)}
+                    {/* {getFirstCharacterUser(comment.author)} */}
                   </div>
-                )}
-                {comment.isAdmin ? (
-                  <strong>
-                    {comment.author} <span>QTV</span>
-                  </strong>
-                ) : (
+                
                   <strong>{comment.author}</strong>
-                )}
               </div>
 
               {userInfo.isAdmin ? (

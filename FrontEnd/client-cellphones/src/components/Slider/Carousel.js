@@ -42,6 +42,7 @@ function Carousel(props) {
     loop:true,
     dots: false,
     infinite: true,
+    
     // autoplay: true,
     // autoplaySpeed: 2500,
     speed: 500,
@@ -68,19 +69,16 @@ function Carousel(props) {
                     ref={slider => (slider1 = slider)} 
                     {...settings} >
               <div key={1}>
-                <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/loa-691-301-max.png"></img>
+                <img height={600} src="https://topprint.vn/wp-content/uploads/2021/07/banner-my-pham-dep-11.png"></img>
               </div>
               <div key={2}>
-                <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/1380-600-max.png"></img>
+                <img  height={600} src="https://printgo.vn/uploads/media/792227/banner-quang-cao-my-pham-24_1623052777.jpg"></img>
               </div>
               <div key={3}>
-                <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/ip11-tg-690-300-max.png"></img>
+                <img  height={600} src="https://intphcm.com/data/upload/1598713492-banner-my-pham-2.jpg"></img>
               </div>
               <div key={4}>
-                <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/dd690x300_XR.png"></img>
-              </div>
-              <div key={4}>
-                <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/se-aw-690-300-max.png"></img>
+                <img  height={600} src="https://cafebiz.cafebizcdn.vn/thumb_w/600/pr/2022/photo1658455342930-16584553430462042350104-63794084405807.jpg"></img>
               </div>
             </Slider>
             <div className='carousel-left-move' onClick={() => previous()}>

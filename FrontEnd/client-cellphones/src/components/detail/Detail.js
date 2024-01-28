@@ -14,7 +14,7 @@ function Detail(props) {
     const dispatch = useDispatch()
     const { id } = useParams();
     const detailProduct = useSelector(state => state.getProductById.product)
-
+    console.log({detailProduct})
     useEffect(() => {
         dispatch(getproductById(id))
     }, [dispatch])
@@ -22,7 +22,7 @@ function Detail(props) {
     return (
         <section id="detail">
             {
-                detailProduct ? (
+                detailProduct && (
             <div className="detail">
                 <div className="detail-title">
                     <h2>{detailProduct.name}</h2>
@@ -30,7 +30,7 @@ function Detail(props) {
                 <div className="detail-info">
                     <div className="detail-info-slide">
                         <div className="detail-info-slide-image">
-                            <img src={detailProduct.image}></img>
+                        <img src={`http://localhost:8080/api/v1/files/${detailProduct?.hinhAnh}`}></img>
                         </div>
                     </div>
                     <DetailInfo  product={detailProduct}></DetailInfo>
@@ -46,8 +46,7 @@ function Detail(props) {
                 </div>
                 
             </div>
-            ) : ''
-            }
+            )}
         </section>
     );
 }

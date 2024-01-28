@@ -16,7 +16,7 @@ function AllProduct(props) {
 
     useEffect(() => {
         dispatch(getAllProduct())
-
+        
         return () => {
             return []
         }

@@ -14,7 +14,7 @@ export default function ReviewProduct() {
   const editorRef = useRef(null);
 
   const detailProduct = useSelector((state) => state.getProductById.product);
-
+  console.log({detailProduct})
   const log = () => {
     if (editorRef.current) {
       const blogContent = String(editorRef.current.getContent());
