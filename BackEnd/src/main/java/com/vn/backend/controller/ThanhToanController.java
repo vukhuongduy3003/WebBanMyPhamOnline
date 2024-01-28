@@ -1,5 +1,6 @@
 package com.vn.backend.controller;
 
+import com.vn.backend.dto.ChiTietDonHangDTO;
 import com.vn.backend.dto.ThanhToanCreateRequest;
 import com.vn.backend.entity.*;
 import com.vn.backend.repository.GioHangRepository;
@@ -39,13 +40,15 @@ public class ThanhToanController {
         gioHang.setTrangThaiThanhToan(form.getTrangThaiThanhToan());
         gioHangService.createGioHang(gioHang);
 
-        ChiTietGioHang chiTietGioHang = new ChiTietGioHang();
         GioHang gioHang1 = gioHangRepository.findGioHangWithMaxId();
-        chiTietGioHang.setGioHang(gioHang1);
-        SanPham sanPham = sanPhamRepository.findById(form.getIdSanPham()).get();
-        chiTietGioHang.setSanPham(sanPham);
-        chiTietGioHang.setSoLuongMua(form.getSoLuongMua());
-        chiTietGioHangService.createChiTietGioHang(chiTietGioHang);
+        for(ChiTietDonHangDTO s : form.getSanPhams()) {
+            ChiTietGioHang chiTietGioHang = new ChiTietGioHang();
+            chiTietGioHang.setGioHang(gioHang1);
+            SanPham sanPham = sanPhamRepository.findById(s.getIdSanPham()).get();
+            chiTietGioHang.setSanPham(sanPham);
+            chiTietGioHang.setSoLuongMua(s.getSoLuongMua());
+            chiTietGioHangService.createChiTietGioHang(chiTietGioHang);
+        }
 
         HoaDonThanhToan hoaDonThanhToan = new HoaDonThanhToan();
         hoaDonThanhToan.setGioHang(gioHang1);
