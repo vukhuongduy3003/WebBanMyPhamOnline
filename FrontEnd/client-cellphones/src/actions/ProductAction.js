@@ -14,7 +14,7 @@ export const filterProductByType = (name) => async (dispatch) => {
 
 export const filterProductByRandomField = (infoProduct) => async (dispatch) => {
   try {
-    const { data } = await axios.post(`${BASE_URL}/products/filter/random`, infoProduct);
+    const data = await axios.post(`${BASE_URL}/products/filter/random`, infoProduct);
     dispatch({ type: "FILTER_PRODUCT_BY_RANDOM_FIELD", payload: data });
   } catch (error) {
   }

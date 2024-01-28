@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import {formatPrice} from '../../untils/index'
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import {AddToCart as AddProduct} from '../../actions/CartAction'
+import { useDispatch } from 'react-redux';
 
 
 function Product(props) {
     const { product } = props;
-
-    function AddToCart(product) {
-        // const action = AddProduct(product);
-        // dispatch(action);
-    }
+    const history = useHistory();
+    const dispatch  = useDispatch();
+    const AddToCart = useCallback(() => {
+        console.log({product})
+        const action = AddProduct(product);
+        dispatch(action);
+    }, [product])
 
     return (
         <div className="hotsale-listproduct-product">
@@ -27,7 +31,10 @@ function Product(props) {
             </div>
             }
             <div className="buy">
-                <a href="/cart" onClick={() => AddToCart(product)}> Mua Ngay</a>
+                <a onClick={() => {
+                AddToCart()
+                history.push('/cart')
+                }}> Mua Ngay</a>
             </div>
         </div>
     );

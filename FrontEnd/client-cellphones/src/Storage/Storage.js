@@ -2,6 +2,10 @@ const setRememberMe = (isRememberMe) => {
     localStorage.setItem('isRememberMe', isRememberMe);
 };
 
+const getListCarts = () => {
+    return JSON.parse(localStorage.getItem('cartItems'))
+}
+
 const isRememberMe = () => {
 
     if (localStorage.getItem('isRememberMe') === null || localStorage.getItem('isRememberMe') === undefined) {
@@ -55,5 +59,5 @@ const getUserInfo = () => {
 }
 
 // export
-const storage = { isRememberMe, setRememberMe, setToken, getToken, setUserInfo, getUserInfo }
+const storage = { isRememberMe, setRememberMe, setToken, getToken, setUserInfo, getUserInfo,getListCarts }
 export default storage;

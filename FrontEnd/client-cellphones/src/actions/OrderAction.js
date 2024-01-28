@@ -1,4 +1,5 @@
 import axios from "axios";
+import PMApi from '../api/Payment'
 let config = {
   headers: {
     "Content-Type": "application/json",
@@ -6,20 +7,9 @@ let config = {
   },
 };
 
-export const createOrder = (order) => async (dispatch, getState) => {
+export const createOrder = (order) => async (dispatch) => {
   try {
-    const {
-      userSignin: { userInfo },
-    } = getState();
-    const { data } = await axios.post(
-      "http://localhost:4000/order/create",
-      order,
-      {
-        headers: {
-          Authorization: `Bearer ${userInfo.token}`,
-        },
-      }
-    );
+    const data = await PMApi.createPayment(order)
     dispatch({ type: "ORDER_CREATE-SUCCESS", payload: data });
     dispatch({ type: "CART_EMTY" });
     localStorage.removeItem("cartItems");

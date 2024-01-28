@@ -5,17 +5,20 @@ import { PayPalButton } from "react-paypal-button-v2";
 import { createOrder, payOrder } from "../../actions/OrderAction";
 import { useHistory } from "react-router-dom";
 import VnPay from "./VnPay";
+import PaymentApi from "../../api/Payment"
+import { notification } from "antd";
 
 export default function Payment() {
   const history = useHistory();
   const dispatch = useDispatch();
+  const {userInfo} = useSelector(state => state.userSignin)
+  const { order } = useSelector((state) => state.orderInfo);
   const [sdkReady, setSdkReady] = useState(false);
   const [choosePay, setChoosePay] = useState({
     payLater: false,
     payOnline: false,
   });
 
-  const { order } = useSelector((state) => state.orderInfo);
 
 
   const payLater = () => {
@@ -38,33 +41,38 @@ export default function Payment() {
   };
 
   const SendOrderPayLater = async () => {
-    const OrderPaid = {
-      ...order,
-      status: "pendding",
-      paymentMethod: "payLater",
-    };
+    if(!order?.orderItems){
 
-    await dispatch(createOrder(OrderPaid))
-    history.push("/orderSuccess");
+      return null;
+    }
+    const products = order?.orderItems?.map((o, i) => ({
+      idSanPham: o.idSanPham,
+      soLuongMua: o.qty >= o.soLuong ? o.soLuong : o.qty
+    }))
+    const total = order?.orderItems.reduce((accumulator, currentValue) => {
+      const quantityToConsider = Math.min(currentValue.qty, currentValue.soLuong);
+      const itemTotal = (currentValue.giaSanPham - currentValue.giaSale) * quantityToConsider;
+    
+      return accumulator + itemTotal;
+    }, 0);
+    
+    const OrderPaid = {
+      sanPhams: products,
+      id: order.user.id,
+      "trangThaiThanhToan": 1,
+      soTienThanhToan: total
+    };
+    try {
+      dispatch(createOrder(OrderPaid))
+      setTimeout(() => {
+        history.push("/orderSuccess");
+      }, 4000);
+    } catch (error) {   
+      notification.error({message: error?.message})   
+    }
+
   };
 
-  useEffect(() => {
-    const addPayPalScript = async () => {
-      const { data } = await axios.get(
-        "http://localhost:4000/api/config/paypal"
-      );
-      const script = document.createElement("script");
-      script.type = "text/javascript";
-      script.src = `https://www.paypal.com/sdk/js?client-id=${data}`;
-      script.async = true;
-      script.onload = () => {
-        setSdkReady(true);
-      };
-      document.body.appendChild(script);
-
-      addPayPalScript();
-    };
-  }, []);
   return (
     <div className="choose-pay">
       <h4>CHỌN PHƯƠNG THỨC THANH TOÁN </h4>
@@ -94,13 +102,7 @@ export default function Payment() {
       {choosePay.payOnline ? (
         <button type="submit" className="paypal">
           
-          <VnPay></VnPay>
-          <PayPalButton
-            className="paypal-btn"
-            style={{ color: "white", marginTop: '1rem' }}
-            amount={1}
-            onSuccess={successPaymentHandler}
-          ></PayPalButton>
+          <VnPay SendOrderPayLater={SendOrderPayLater} />
         </button>
       ) : (
         ""

@@ -13,7 +13,7 @@ function AllRepComment(props) {
             <div className="all-comment-info">
               {repComment.isAdmin ? (
                 <div className="all-comment-info-name admin">
-                  <img src="https://cellphones.com.vn/skin/frontend/default/cpsdesktop/images/media/logo.png"></img>
+                  <img src="https://Mĩ Phẩm Đông Á.com.vn/skin/frontend/default/cpsdesktop/images/media/logo.png"></img>
                 </div>
               ) : (
                 <div className="all-comment-info-name">

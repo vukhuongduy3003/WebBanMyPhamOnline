@@ -2,12 +2,9 @@ import React, { useEffect, useState } from "react";
 import "./FilterMenu.css";
 import { Dropdown } from "antd";
 import { DownOutlined} from "@ant-design/icons";
-import {
-  filterProductByRandomField,
-} from "../../../actions/ProductAction";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllSelectList } from "../../../actions/SelectListAction";
 import { getAllTypeProduct } from "../../../actions/ListTypeProductAction";
+import { filterProductByRandomField } from "../../../actions/ProductAction";
 
 export default function FilterMenu() {
   const dispatch = useDispatch();
@@ -17,7 +14,9 @@ export default function FilterMenu() {
   useEffect(() => {
     dispatch(getAllTypeProduct())
   }, [dispatch])
-
+  useEffect(() => {
+    dispatch(filterProductByRandomField(dataFilter));
+  }, [dataFilter]);
   const filterMenuItemAntd = (item) => (
     <div className="filter-menu-item">
       <div
@@ -80,11 +79,11 @@ export default function FilterMenu() {
     return (
     <div
       className={
-        dataFilter[`type`] === item.name
+        dataFilter[`type`] === item.idDanhMuc
           ? `filter-menu-firm-item active`
           : "filter-menu-firm-item"
       }
-      onClick={() => HandleFilterProductByType(item.name)}
+      onClick={() => HandleFilterProductByType(item.idDanhMuc)}
     >
       <span>{item?.tenDanhMuc}</span>
     </div>

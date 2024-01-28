@@ -40,7 +40,7 @@ function Login(props) {
         data.username,
         data.password
       );
-      if (result.token === null || result.token === undefined) {
+      if (!result.token) {
         setEmail(result.email);
         setOpenModal(true);
 
@@ -65,8 +65,8 @@ function Login(props) {
         //   result.status)
 
         // redirect to home page
+        dispatch(login(result));
         history.push("/");
-        dispatch(login(data));
       }
 
     } catch (error) {
@@ -75,7 +75,7 @@ function Login(props) {
         // showErrorNotification("Login Fail!", "Wrong Username or Password!")
       } else {
         // redirect page error server
-        props.history.push("/auth/500");
+        history.push("/auth/500");
       }
     }
   };

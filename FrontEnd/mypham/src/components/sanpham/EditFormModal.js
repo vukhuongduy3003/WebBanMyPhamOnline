@@ -54,6 +54,9 @@ const EditFormModal = ({ isOpen, toggle, onSave, initialValues }) => {
   const formik = useFormik({
     initialValues: initialValues,
     onSubmit: (values) => {
+      values["giaSanPham"] = values["giaSanPham"] || 100000
+      values["tinhTrang"] = +values["tinhTrang"] || 1
+      values["idDanhMuc"] = +values["idDanhMuc"] || 1
       onSave(values);
       toggle();
     },
@@ -103,7 +106,6 @@ const EditFormModal = ({ isOpen, toggle, onSave, initialValues }) => {
         <Input
           type="number"
           min = {0}
-          required
           name="giaSanPham"
           id="giaSanPham"
           value={formik.values.giaSanPham || 100000}
@@ -176,7 +178,6 @@ const EditFormModal = ({ isOpen, toggle, onSave, initialValues }) => {
       <FormGroup>
         <Label for="moTa">Mô tả</Label>
         <Input
-          type="text"
           name="moTa"
           id="moTa"
           value={formik.values.moTa}

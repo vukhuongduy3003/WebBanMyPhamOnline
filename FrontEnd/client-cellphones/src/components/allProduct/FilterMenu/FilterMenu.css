@@ -91,9 +91,9 @@
 }
 .filter-menu-firm-item{
     position: relative;
-    padding: .5rem 1rem;
+    padding: .2rem 1rem;
     margin-right: 1rem;
-    border-radius: 18px;
+    border-radius: 4px;
     border: 1px solid #eee;
     background: #fff;
 

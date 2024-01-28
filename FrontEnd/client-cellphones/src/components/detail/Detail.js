@@ -22,7 +22,7 @@ function Detail(props) {
     return (
         <section id="detail">
             {
-                detailProduct && (
+        detailProduct && (
             <div className="detail">
                 <div className="detail-title">
                     <h2>{detailProduct.name}</h2>

@@ -264,22 +264,17 @@
 }
 
 .all-comment-info span{
-    background: #e11b1e;
     font-weight: 500;
-    padding: .1rem .2rem;
     color: white;
 
     line-height: 25px;
 }
 .all-comment-info-name{
-    width: 25px;
-    height: 25px;
-    background: #ddd;
     margin-right: 7px;
     text-align: center;
     color: #777;
     text-transform: uppercase;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 26px;
     font-weight: 600;
 }
@@ -294,7 +289,8 @@
 }
 .all-comment-content, .all-comment-more{
     display: flex;
-    margin-left: 2rem;
+    margin-left: 48px;
+    font-size: 16px;
     padding: 0.5rem 0;
 }
 .all-comment-more{

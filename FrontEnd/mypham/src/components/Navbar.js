@@ -103,8 +103,8 @@ const NavbarDropdown = ({
   header,
   footer,
   icon: Icon
-}) => (
-  <UncontrolledDropdown nav inNavbar className="mr-2">
+}) => {
+  return <UncontrolledDropdown nav inNavbar className="mr-2">
     <DropdownToggle nav className="nav-icon dropdown-toggle">
       <div className="position-relative">
         <Icon className="align-middle" size={18} />
@@ -121,8 +121,7 @@ const NavbarDropdown = ({
       </DropdownItem>
     </DropdownMenu>
   </UncontrolledDropdown>
-);
-
+}
 const NavbarDropdownItem = ({ icon, title, description, time, spacing }) => (
   <ListGroupItem>
     <Row noGutters className="align-items-center">
@@ -294,7 +293,7 @@ const NavbarComponent = (props) => {
               <DropdownItem divider />
               <DropdownItem onClick={() => history.push("/settings")}>Settings & Privacy</DropdownItem>
               <DropdownItem>Help</DropdownItem>
-              <DropdownItem>Sign out</DropdownItem>
+              <DropdownItem onClick= {() => history.push('/auth/sign-in')}>Sign out</DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
         </Nav>

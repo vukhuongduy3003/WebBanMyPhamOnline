@@ -8,7 +8,7 @@ function Footer(props) {
             <div className="footer">
                 <div className="footer-top">
                     <div className="footer-top-name">
-                        <h2>cellphones</h2>
+                        <h2>Mĩ Phẩm Đông Á</h2>
                     </div>
                     <div className="footer-top-about">
                         <h2>about</h2>
@@ -55,7 +55,7 @@ function Footer(props) {
                 </div>
                 <div className="footer-bot">
                     
-                    <p>Copyright © 2020 Cellphones. All rights reserved.</p>
+                    <p>Copyright © 2020 Mĩ Phẩm Đông Á. All rights reserved.</p>
                 </div>
             </div>
         </section>

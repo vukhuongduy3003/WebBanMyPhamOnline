@@ -67,36 +67,30 @@ function Header(props) {
           </li>
           {userInfo ? (
             <li onClick={() => setShowAccount2(!showAccount2)}>
-              <Link>
+              <div>
                 {userInfo.name}
                 <DownOutlined style={{ fontSize: "14px" }} />
-              </Link>
-              {showAccount2 ? (
+              </div>
+              {showAccount2 && (
                 <div className="menu-drop">
                   <Link to="/myOrder">Đơn hàng</Link>
-                  <Link onClick={() => handleSignout()}>Đăng xuất</Link>
+                  <button onClick={() => handleSignout()}>Đăng xuất</button>
                 </div>
-              ) : (
-                ""
               )}
             </li>
           ) : (
             <li onClick={() => setShowAccount(!showAccount)}>
-              <Link>
-                Tài khoản
-                <DownOutlined style={{ fontSize: "14px" }} />
-              </Link>
-
-              {showAccount ? (
-                <div className="menu-drop">
-                  <Link to="register">Đăng kí</Link>
-                  <Link to="login">Đăng nhập</Link>
-                </div>
-              ) : (
-                ""
-              )}
+              Tài khoản
+              <DownOutlined style={{ fontSize: "14px" }} />
             </li>
           )}
+          {showAccount && (
+            <div className="menu-drop">
+              <Link to="/register">Đăng kí</Link>
+              <Link to="/login">Đăng nhập</Link>
+            </div>
+          )}
+
           <li className="shop-cart">
             <Link to="/cart" className="shop-cart">
               <ShoppingCartOutlined
