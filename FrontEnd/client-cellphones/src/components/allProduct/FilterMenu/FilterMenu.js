@@ -4,7 +4,7 @@ import { Dropdown } from "antd";
 import { DownOutlined} from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllTypeProduct } from "../../../actions/ListTypeProductAction";
-import { filterProductByRandomField } from "../../../actions/ProductAction";
+import { filterProductByRandomField, filterProductByType } from "../../../actions/ProductAction";
 
 export default function FilterMenu() {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ export default function FilterMenu() {
     dispatch(getAllTypeProduct())
   }, [dispatch])
   useEffect(() => {
-    dispatch(filterProductByRandomField(dataFilter));
+    dispatch(filterProductByType(dataFilter));
   }, [dataFilter]);
   const filterMenuItemAntd = (item) => (
     <div className="filter-menu-item">

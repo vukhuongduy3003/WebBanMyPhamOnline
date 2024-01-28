@@ -5,8 +5,8 @@ import { axiosClient } from "../services/config.services";
 import ProductApi from "../api/SanPhamApi"
 export const filterProductByType = (name) => async (dispatch) => {
   try {
-    const { data } = await axios.get(`${BASE_URL}/products/${name}`);
-    dispatch({ type: "FILTER_PRODUCT_BY_TYPE", payload: data });
+    const data = await ProductApi.getSpById(name.type);
+    dispatch({ type: "FILTER_PRODUCT_BY_RANDOM_FIELD", payload: data.content || [] });
   } catch (error) {
   }
 };

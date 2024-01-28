@@ -31,6 +31,8 @@ const getById = (id) => {
   return Api.get(`${url}/${id}`);
 };
 
+const getSpById = (id) => Api.get(`${url}/danhMucs/${id}`)
+
 const deleteById = (id) => {
   return Api.delete(`${url}/${id}`);
 };
@@ -47,5 +49,5 @@ const update = (id, data) => {
 };
 
 // export
-const api = { update, getById, getById, create, getAllSanPham, deleteById }
+const api = { update, getById, getById, create, getAllSanPham, deleteById,getSpById }
 export default api;
