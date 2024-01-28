@@ -9,7 +9,7 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -26,7 +26,7 @@ public class GioHang implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "`ngayTao`", nullable = false)
     @Type(type = "org.hibernate.type.LocalDateTimeType")
-    private LocalDate ngayTao;
+    private LocalDateTime ngayTao;
 
     @Column(name = "`trangThaiThanhToan`", nullable = false)
     private Integer trangThaiThanhToan;
