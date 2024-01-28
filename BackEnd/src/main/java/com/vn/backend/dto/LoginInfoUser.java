@@ -4,8 +4,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 public class LoginInfoUser {
+	private Integer id;
 
 	private String token;
 
@@ -23,8 +23,9 @@ public class LoginInfoUser {
 
 	private String status;
 
-	public LoginInfoUser(String token, String userName, String email, String fullName, String diaChi, String sDT, String role,
+	public LoginInfoUser(String token, Integer id, String userName, String email, String fullName, String diaChi, String sDT, String role,
 			String status) {
+		this.id = id;
 		this.token = token;
 		this.userName = userName;
 		this.email = email;
