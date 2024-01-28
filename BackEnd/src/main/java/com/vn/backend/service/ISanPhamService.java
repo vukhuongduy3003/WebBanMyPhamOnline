@@ -11,7 +11,9 @@ import java.util.List;
 public interface ISanPhamService {
     Page<SanPhamDTO> getAllSanPhams(Pageable pageable, SanPhamFilter filter, String search);
 
-    Page<SanPham> findSanPhamsByDanhMucId(Integer idDanhMuc, Pageable pageable);
+    Page<SanPhamDTO> findSanPhamsByDanhMucId(Integer idDanhMuc, Pageable pageable);
+
+    SanPham findByIdSanPham(Integer id);
 
     void createSanPham(SanPham form);
 

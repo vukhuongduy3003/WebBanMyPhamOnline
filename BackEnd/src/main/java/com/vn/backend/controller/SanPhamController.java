@@ -40,7 +40,7 @@ public class SanPhamController {
 
     @GetMapping("/danhMucs/{idDanhMuc}")
     public ResponseEntity<?> findSanPhamsByDanhMucId(@PathVariable Integer idDanhMuc, Pageable pageable) {
-        Page<SanPham> entities = service.findSanPhamsByDanhMucId(idDanhMuc, pageable);
+        Page<SanPhamDTO> entities = service.findSanPhamsByDanhMucId(idDanhMuc, pageable);
         return new ResponseEntity<>(entities, HttpStatus.OK);
     }
 

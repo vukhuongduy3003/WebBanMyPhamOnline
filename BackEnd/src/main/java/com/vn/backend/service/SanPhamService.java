@@ -56,8 +56,12 @@ public class SanPhamService implements ISanPhamService {
     }
 
 
-    public Page<SanPham> findSanPhamsByDanhMucId(Integer idDanhMuc, Pageable pageable) {
+    public Page<SanPhamDTO> findSanPhamsByDanhMucId(Integer idDanhMuc, Pageable pageable) {
         return repository.findSanPhamsByDanhMucId(idDanhMuc, pageable);
+    }
+
+    public SanPham findByIdSanPham(Integer id) {
+        return repository.findById(id).get();
     }
 
     public void createSanPham(SanPham form) {
