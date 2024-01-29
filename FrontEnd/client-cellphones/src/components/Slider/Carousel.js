@@ -69,16 +69,16 @@ function Carousel(props) {
                     ref={slider => (slider1 = slider)} 
                     {...settings} >
               <div key={1}>
-                <img height={600} src="https://topprint.vn/wp-content/uploads/2021/07/banner-my-pham-dep-11.png"></img>
+                <img height={350} style={{objectFit: 'cover'}} src="https://media.hcdn.vn/hsk/1706496713home-6061.jpg"></img>
               </div>
               <div key={2}>
-                <img  height={600} src="https://printgo.vn/uploads/media/792227/banner-quang-cao-my-pham-24_1623052777.jpg"></img>
+                <img  height={350}  style={{objectFit: 'cover'}} src="https://pos.nvncdn.com/d893b9-45589/bn/20230328_GzpQyr60.jpeg"></img>
               </div>
               <div key={3}>
-                <img  height={600} src="https://intphcm.com/data/upload/1598713492-banner-my-pham-2.jpg"></img>
+                <img  height={350}  style={{objectFit: 'cover'}} src="https://media.hcdn.vn/hsk/1705404531web.jpg"></img>
               </div>
               <div key={4}>
-                <img  height={600} src="https://cafebiz.cafebizcdn.vn/thumb_w/600/pr/2022/photo1658455342930-16584553430462042350104-63794084405807.jpg"></img>
+                <img  height={350}  style={{objectFit: 'cover'}} src="https://etimg.etb2bimg.com/thumb/msid-86771640,imgsize-189454,width-1200,height=765,overlay-etretail/health-and-beauty/cosmetics-and-fragrances/lakme-wont-carry-tests-on-animals-for-its-cosmetics-products.jpg"></img>
               </div>
             </Slider>
             <div className='carousel-left-move' onClick={() => previous()}>
@@ -102,13 +102,13 @@ function Carousel(props) {
                 TRỢ GIÁ MÙA DỊCH <br></br> Ưu đãi vô địch
               </div>
               <div>
-                NOTE 20 ULTRA 5G  <br></br>  Hotsale giảm sập sàn
+              Kem Chống Nắng La Roche-Posay  <br></br>  Hotsale giảm sập sàn
               </div>
               <div>
-              XR CHÍNH HÃNG  <br></br>  Giá mới cực tốt
+              Sữa Chống Nắng Anessa Dưỡng Da Kiềm Dầu <br></br>  Giá mới cực tốt
               </div>
               <div>
-              APPLE WATCH SE  <br></br>  Mua đi chờ chi
+              Kem Anessa Dưỡng Da Kiềm Dầu  <br></br>  Mua đi chờ chi
               </div>
               <div>
               ĐẠI TIỆC ÂM THANH   <br></br>   Loa sale bung nóc
@@ -119,13 +119,13 @@ function Carousel(props) {
         </div>
         <div className="carousel-right">
           <div className="carousel-right-item">
-            <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/RB_S21.png"></img>
+            <img style={{objectFit: 'cover'}} src="https://pos.nvncdn.com/d893b9-45589/bn/20231108_HvztCAds.jpeg"></img>
           </div>
           <div className="carousel-right-item">
-            <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/iPhone_12_690x300_copyssspng.png"></img>
+            <img style={{objectFit: 'cover'}} src="https://pos.nvncdn.com/d893b9-45589/bn/20230328_GzpQyr60.jpeg"></img>
           </div>
           <div className="carousel-right-item">
-            <img src="https://cdn.cellphones.com.vn/media/ltsoft/promotion/11lite-690-300-max.png"></img>
+            <img style={{objectFit: 'cover'}} src="https://pos.nvncdn.com/d893b9-45589/ps/content/20230117_EAN3PLZNwc8OBbRF4zeHK7D0.jpg"></img>
           </div>
         </div>
       </div>

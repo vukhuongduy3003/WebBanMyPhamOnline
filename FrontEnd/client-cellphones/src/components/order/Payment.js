@@ -64,11 +64,12 @@ export default function Payment() {
     };
     try {
       dispatch(createOrder(OrderPaid))
+      notification.success({message: "Thanh Toán Thành Công !"})
       setTimeout(() => {
         history.push("/orderSuccess");
       }, 4000);
     } catch (error) {   
-      notification.error({message: error?.message})   
+      notification.error({message: "Thanh Toán Không thành công"})   
     }
 
   };

@@ -13,7 +13,9 @@ export const createOrder = (order) => async (dispatch) => {
     dispatch({ type: "ORDER_CREATE-SUCCESS", payload: data });
     dispatch({ type: "CART_EMTY" });
     localStorage.removeItem("cartItems");
+    return true;
   } catch (error) {
+    return false;
   }
 };
 

@@ -25,7 +25,7 @@ function Product(props) {
       <td>
         <img src={product.image}></img>
       </td>
-      <td>{product.name}</td>
+      <td>{product.tenSanPham}</td>
       <td>{formatPrice(product.salePrice)}</td>
       <td>{product.type}</td>
       <td

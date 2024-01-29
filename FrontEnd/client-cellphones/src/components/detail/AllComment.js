@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Col, Row, Avatar } from "antd";
+import { Col, Row, Avatar, Card } from "antd";
 import { WechatOutlined, PushpinOutlined, LockOutlined  } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -38,22 +38,23 @@ function AllComment(props) {
     <div class="all-comment">
       {allComment?.map((comment) => (
         <>
-          <Col span={18} style={{ marginTop: "1rem" }} xs={24} sm={24} md={18}>
+          <Card span={18} style={{ marginTop: "1rem" }} xs={24} sm={24} md={18}>
             <div className="all-comment-info">
-              <div style={{ display: "flex", alignItems: "center", width: "100%" }}>
+              <div style={{ display: "flex", width: "100%" }}>
                 <Avatar
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-ENMFZRObGNd5SheygE89TYfbKu5sdEDjUg&usqp=CAU"
                   size={48}
                 />
                 <div className="all-comment-info-name" style={{ marginLeft: "0.5rem" }}>
                   <strong>{comment.fullName}</strong>
+                  <div>Khách Hàng</div>
                 </div>
               </div>
             </div>
             <div className="all-comment-content" style={{ marginTop: "0.5rem" }}>
               {comment.noiDung}
             </div>
-          </Col>
+          </Card>
         </>
       ))}
     </div>

@@ -19,7 +19,7 @@ function Product(props) {
         <div className="hotsale-listproduct-product">
             <Link to={"/detail/" + product.idSanPham}>
                 <img src={`http://localhost:8080/api/v1/files/${product?.hinhAnh}`}></img>
-                <p className="hotsale-listproduct-product-name">{product.name}</p>
+                <p className="hotsale-listproduct-product-name">{product.tenSanPham}</p>
                 <div className="price">
                     <span className="price1">{formatPrice(product?.giaSanPham - product?.giaSale)}đ</span>
                     <span className="price2">{formatPrice(product?.giaSanPham)}đ</span>

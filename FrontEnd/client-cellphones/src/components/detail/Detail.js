@@ -25,7 +25,7 @@ function Detail(props) {
         detailProduct && (
             <div className="detail">
                 <div className="detail-title">
-                    <h2>{detailProduct.name}</h2>
+                    <h2>{detailProduct.tenSanPham}</h2>
                 </div>
                 <div className="detail-info">
                     <div className="detail-info-slide">
