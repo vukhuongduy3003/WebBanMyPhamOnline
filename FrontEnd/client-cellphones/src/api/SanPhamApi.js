@@ -12,8 +12,17 @@ const parsedDate = moment(dateString).format('DD-MM-yyyy');
 return parsedDate; // Output: "27-01-2024"
 
 }
- const getAllSanPham = () => {
-  return  Api.get(`${url}`);
+ const getAllSanPham = (page = 1, size = 10, sortType = 'desc', search = '') => {
+  const parameters = {
+      page,
+      size,
+    }
+
+    // search
+    if (search) {
+        parameters.search = search;
+    }
+  return  Api.get(`${url}`,  { params: parameters });
 }
 
 
