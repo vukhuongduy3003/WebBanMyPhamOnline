@@ -1,5 +1,6 @@
 import axios from "axios";
 import PMApi from '../api/Payment'
+import OrderApi from "../api/OrderApi"
 let config = {
   headers: {
     "Content-Type": "application/json",
@@ -241,16 +242,12 @@ export const GetAllWard = (districtId) => async (dispatch, getState) => {
 
 //-----------------------  user
 
-export const getOrderByUser = (idUser) => async (dispatch, getState) => {
+export const getOrderByUser = () => async (dispatch, getState) => {
   try {
     const {
       userSignin: { userInfo },
     } = getState();
-    const { data } = await axios.get(`http://localhost:4000/order/${idUser}`, {
-      headers: {
-        Authorization: `Bearer ${userInfo.token}`,
-      },
-    });
+    const data = await OrderApi.getById(userInfo.id)
     dispatch({ type: "GET_ORDER_BY_USER", payload: data });
   } catch (error) {
   }

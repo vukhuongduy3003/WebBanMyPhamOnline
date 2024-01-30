@@ -2,16 +2,18 @@ import React from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { notification } from "antd";
+import VNPayAPi from "../../api/Payment";
 
-export default function VnPay({SendOrderPayLater}) {
+export default function VnPay({SendOrderPayLater, total}) {
   const { order } = useSelector((state) => state.orderInfo);
 
   const handleVNPay = async () => {
-    notification['error']({
-      message: 'Thanh toán VNPAY Chưa được hỗ trợ',
-    });
+    
+    const returnURL = await VNPayAPi.VNPayPayment(total)
+    
+    SendOrderPayLater(1)
     setTimeout(() => {
-      window.open('https://sandbox.vnpayment.vn/apis/', '_blank');
+      window.open(returnURL, "_self");
     }, 4000);
   };
 

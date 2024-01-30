@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from "react";
 import BaiVietApi from '../../api/BaiVietApi';
-import ToolkitProvider from 'react-bootstrap-table2-toolkit';
-// import CustomSearch from "./CustomSearch";
-import * as Icon from 'react-feather';
-import { FastField, Form, Formik } from "formik";
-import { ReactstrapInput } from "reactstrap-formik";
-import * as Yup from 'yup';
-import { toastr } from "react-redux-toastr";
 import BaiVietTable from "../../components/baiviet/BaiVietTable";
 const size = 20
 function BaiVietPage() {

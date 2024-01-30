@@ -29,18 +29,14 @@ export default function Payment() {
     setChoosePay({ payLater: false, payOnline: true });
   };
 
-  const successPaymentHandler = async (paymentResult) => {
-    const OrderPaid = {
-      ...order,
-      status: "pendding",
-      paymentMethod: "payOnline",
-      paymentResult: {...paymentResult},
-    };
-    await dispatch(createOrder(OrderPaid));
-    history.push("/orderSuccess");
-  };
 
-  const SendOrderPayLater = async () => {
+  const total = order?.orderItems.reduce((accumulator, currentValue) => {
+    const quantityToConsider = Math.min(currentValue.qty, currentValue.soLuong);
+    const itemTotal = (currentValue.giaSanPham - currentValue.giaSale) * quantityToConsider;
+  
+    return accumulator + itemTotal;
+  }, 0);
+  const SendOrderPayLater = async (status = 0) => {
     if(!order?.orderItems){
 
       return null;
@@ -49,22 +45,15 @@ export default function Payment() {
       idSanPham: o.idSanPham,
       soLuongMua: o.qty >= o.soLuong ? o.soLuong : o.qty
     }))
-    const total = order?.orderItems.reduce((accumulator, currentValue) => {
-      const quantityToConsider = Math.min(currentValue.qty, currentValue.soLuong);
-      const itemTotal = (currentValue.giaSanPham - currentValue.giaSale) * quantityToConsider;
-    
-      return accumulator + itemTotal;
-    }, 0);
     
     const OrderPaid = {
       sanPhams: products,
       id: order.user.id,
-      "trangThaiThanhToan": 1,
+      trangThaiThanhToan: status,
       soTienThanhToan: total
     };
+    dispatch(createOrder(OrderPaid))
     try {
-      dispatch(createOrder(OrderPaid))
-      notification.success({message: "Thanh Toán Thành Công !"})
       setTimeout(() => {
         history.push("/orderSuccess");
       }, 4000);
@@ -95,7 +84,7 @@ export default function Payment() {
       </div>
       {choosePay.payLater ? (
         <div className="customer-order">
-          <button onClick={SendOrderPayLater}>Đặt Hàng</button>
+          <button onClick={() =>SendOrderPayLater(0)}>Đặt Hàng</button>
         </div>
       ) : (
         ""
@@ -103,7 +92,7 @@ export default function Payment() {
       {choosePay.payOnline ? (
         <button type="submit" className="paypal">
           
-          <VnPay SendOrderPayLater={SendOrderPayLater} />
+          <VnPay SendOrderPayLater={SendOrderPayLater} total={total}/>
         </button>
       ) : (
         ""
