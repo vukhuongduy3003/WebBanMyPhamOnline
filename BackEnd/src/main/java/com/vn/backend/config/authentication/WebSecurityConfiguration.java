@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -19,6 +20,7 @@ import com.vn.backend.service.IUserService;
 
 @Component
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
@@ -37,7 +39,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http
 		.authorizeRequests()
 		.antMatchers("/api/v1/login").anonymous()
-		.antMatchers("/api/v1/sanpham").anonymous()
+		.antMatchers("/api/v1/sanPhams").anonymous()
+		.antMatchers("/api/v1/payment/payment-callback").anonymous()
 		.antMatchers(HttpMethod.GET, "/api/v1/files/**").permitAll()
 		.antMatchers("/api/v1/users/profile").authenticated()
 		.antMatchers("/api/v1/users/**").permitAll()
