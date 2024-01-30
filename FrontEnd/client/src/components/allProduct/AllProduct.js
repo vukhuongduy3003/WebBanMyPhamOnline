@@ -13,10 +13,9 @@ import { Pagination } from 'antd';
 function AllProduct(props) {
     const dispatch = useDispatch()
     const onChange = (page, size) => {
-        console.log(page, size)
+        dispatch(getAllProduct(page, size))
     }
-    const product = useSelector(state => state.allProduct.product)
-
+    const {product, totalElements} = useSelector(state => state.allProduct)
     useEffect(() => {
         dispatch(getAllProduct())
         
@@ -33,7 +32,7 @@ function AllProduct(props) {
                 {
                    product && product.length > 0 ? (<ListProduct HotSaleProducts={handlePercentDiscount(product)}></ListProduct>) : (<span>Không có sản phẩm</span>)
                 }
-                <Pagination defaultCurrent={6} total={500} onChange={onChange} onShowSizeChange={onChange} style={{marginTop: 26}} className='mb-20' />;
+                <Pagination defaultCurrent={0} total={totalElements} onChange={onChange} onShowSizeChange={onChange} style={{marginTop: 26}} className='mb-20' />
             </div>
         </section>
 

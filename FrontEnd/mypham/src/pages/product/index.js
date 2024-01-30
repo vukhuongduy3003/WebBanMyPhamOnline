@@ -9,20 +9,20 @@ function SanPhamPage() {
     totalElements: 0,
   })
 
+  const getAllGroup = async () => {
+    const result = await SanPhamApi.getAllSanPham();
+    const data = result.content;
+    const totalElements = result.totalElements;
+    setProducts({data, totalElements})
+  }
   useEffect(() => {
-    const getAllGroup = async () => {
-      const result = await SanPhamApi.getAllSanPham();
-      const data = result.content;
-      const totalElements = result.totalElements;
-      setProducts({data, totalElements})
-    }
 
     getAllGroup();
   }, [size]);
   console.log("DEBUG::  ", products)
   return (
     <div>
-      <SanPhamTable {...{data: products.data, setProducts}} />
+      <SanPhamTable {...{data: products.data, getAllGroup: getAllGroup}} />
     </div>
   )
 }

@@ -22,10 +22,10 @@ export const filterProductByRandomField = (infoProduct) => async (dispatch) => {
   // dispatch({ type: "FILTER_PRODUCT_BY_RANDOM_FIELD", payload: infoProduct });
 };
 
-export const getAllProduct = () => async (dispatch) => {
+export const getAllProduct = (page, size) => async (dispatch) => {
   try {
-    const data = await ProductApi.getAllSanPham()
-    dispatch({ type: "GET_ALL_PRODUCT", payload: data?.content });
+    const data = await ProductApi.getAllSanPham(page, size)
+    dispatch({ type: "GET_ALL_PRODUCT", payload: {data: data?.content, totalElements: data?.totalElements} });
   } catch (error) {
     dispatch({ type: "GET_ALL_PRODUCT_FAIL", payload: error.message });
   }

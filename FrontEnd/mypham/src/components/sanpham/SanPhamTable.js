@@ -14,7 +14,7 @@ import ConfirmationModal from "../ConfirmDelete";
 import EditFormModal from "./EditFormModal";
 import { showSuccessNotification } from "../../helpers/helps";
 
-const SanPhamTable = ({ data, setBaiViets }) => {
+const SanPhamTable = ({ data, getAllGroup }) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
@@ -26,17 +26,6 @@ const SanPhamTable = ({ data, setBaiViets }) => {
   const handleEdit = (baiviet) => {
     setEditFormData(baiviet ?? {});
     toggleEditModel();
-  };
-
-  const getAllGroup = async () => {
-    try {
-      const result = await SanPhamApi.getAllDanhMuc();
-      const { content: data, totalElements } = result;
-      setBaiViets({ data, totalElements });
-      console.log('getData');
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
   };
 
   const handleSave = async (data) => {
@@ -61,6 +50,7 @@ const SanPhamTable = ({ data, setBaiViets }) => {
       await SanPhamApi.deleteById(deleteId);
       toggleModal();
       setDeleteId(null);
+      showSuccessNotification("Xóa thành công");
       await getAllGroup();
     } catch (error) {
       console.error('Error deleting data:', error);

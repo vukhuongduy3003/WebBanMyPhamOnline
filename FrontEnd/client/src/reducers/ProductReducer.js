@@ -1,13 +1,13 @@
 const initialState = {
     product:[],
+    totalElements: 0,
     currentPage: 1
 }
 
 export const getAllProductReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'GET_ALL_PRODUCT':
-            console.log(action.payload)
-            return {...state, product: action.payload}
+            return {...state, product: action.payload.data, totalElements: action.payload.totalElements}
 
         case 'GET_ALL_PRODUCT_FAIL':
             return {...state, error: action.payload}
