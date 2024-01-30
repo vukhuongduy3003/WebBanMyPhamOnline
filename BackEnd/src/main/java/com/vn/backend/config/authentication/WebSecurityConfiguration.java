@@ -40,6 +40,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.authorizeRequests()
 		.antMatchers("/api/v1/login").anonymous()
 		.antMatchers("/api/v1/sanPhams").anonymous()
+		.antMatchers("/api/v1/payment/payment-callback").anonymous()
 		.antMatchers(HttpMethod.GET, "/api/v1/files/**").permitAll()
 		.antMatchers("/api/v1/users/profile").authenticated()
 		.antMatchers("/api/v1/users/**").permitAll()
